@@ -1,0 +1,151 @@
+{
+  "model_version": "SepXAI-R2-2026-09-02",
+  "sha256": "9f74ab5e23fe82a02c33af508a09c23365379d7229a49f73ec3f35a58591376e",
+  "random_seed": 42,
+  "features": [
+    "lactate_min",
+    "sbp_ni_min",
+    "resp_rate_min",
+    "dbp_ni_max",
+    "heart_rate_mean",
+    "spo2_min",
+    "temperature_max"
+  ],
+  "display_names": {
+    "lactate_min": "Minimum lactate",
+    "sbp_ni_min": "Minimum non-invasive SBP",
+    "resp_rate_min": "Minimum respiratory rate",
+    "dbp_ni_max": "Maximum non-invasive DBP",
+    "heart_rate_mean": "Mean heart rate",
+    "spo2_min": "Minimum SpO2",
+    "temperature_max": "Maximum temperature"
+  },
+  "units": {
+    "lactate_min": "mmol/L",
+    "sbp_ni_min": "mmHg",
+    "resp_rate_min": "breaths/min",
+    "dbp_ni_max": "mmHg",
+    "heart_rate_mean": "beats/min",
+    "spo2_min": "%",
+    "temperature_max": "degrees C"
+  },
+  "valid_ranges": {
+    "lactate_min": [
+      0.2,
+      30.0
+    ],
+    "sbp_ni_min": [
+      30.0,
+      300.0
+    ],
+    "resp_rate_min": [
+      1.0,
+      80.0
+    ],
+    "dbp_ni_max": [
+      10.0,
+      200.0
+    ],
+    "heart_rate_mean": [
+      20.0,
+      250.0
+    ],
+    "spo2_min": [
+      30.0,
+      100.0
+    ],
+    "temperature_max": [
+      25.0,
+      45.0
+    ]
+  },
+  "explanation_reference": {
+    "lactate_min": {
+      "q01": 0.6,
+      "q25": 1.0,
+      "median": 1.4,
+      "q75": 1.9,
+      "q99": 6.6
+    },
+    "sbp_ni_min": {
+      "q01": 54.0,
+      "q25": 82.0,
+      "median": 92.0,
+      "q75": 103.0,
+      "q99": 144.0
+    },
+    "resp_rate_min": {
+      "q01": 4.0,
+      "q25": 10.0,
+      "median": 12.0,
+      "q75": 15.0,
+      "q99": 23.0
+    },
+    "dbp_ni_max": {
+      "q01": 47.0,
+      "q25": 71.0,
+      "median": 83.0,
+      "q75": 98.0,
+      "q99": 149.0
+    },
+    "heart_rate_mean": {
+      "q01": 54.397999999999996,
+      "q25": 75.38,
+      "median": 84.96,
+      "q75": 96.76,
+      "q99": 127.55040000000001
+    },
+    "spo2_min": {
+      "q01": 68.0,
+      "q25": 90.0,
+      "median": 93.0,
+      "q75": 95.0,
+      "q99": 100.0
+    },
+    "temperature_max": {
+      "q01": 36.0,
+      "q25": 37.0,
+      "median": 37.33,
+      "q75": 37.9,
+      "q99": 39.61
+    }
+  },
+  "outcome": "30-day all-cause mortality from hospital admission",
+  "index_time": "first ICU admission in the first hospitalization",
+  "observation_window": "ICU admission -6 h to ICU admission +24 h",
+  "prediction_time": "end of the 24-h observation window",
+  "external_validation": {
+    "dataset": "MIMIC-III v1.4",
+    "source_doi": "10.1186/s12967-020-02620-5",
+    "source_supplement": "12967_2020_2620_MOESM1_ESM.csv",
+    "source_supplement_sha256": "6e0b4104ec2388fcef25f179c92c449b567a6ef7a11b17276b77e05a0c6f32de",
+    "analytic_file_sha256": "f1a684b761760cf78c100b4d7238acb4be7cbbb15d19134ac36736d9c7cafea4",
+    "reported_analytic_file_sha256": "f1a684b761760cf78c100b4d7238acb4be7cbbb15d19134ac36736d9c7cafea4",
+    "predictor_window": "published first-day ICU summary variables",
+    "landmark_rule": "icu_los >= 1.0 day",
+    "use": "evaluation only"
+  },
+  "operating_threshold": 0.12454709065853185,
+  "threshold_rationale": "Highest-specificity threshold achieving sensitivity >= 0.80 in the held-out calibration subset",
+  "selected_algorithm": "CatBoost",
+  "selection_rule": "Highest mean AUROC in development-set cross-validation",
+  "best_parameters": {
+    "classifier__depth": 6,
+    "classifier__iterations": 150,
+    "classifier__learning_rate": 0.05
+  },
+  "software": {
+    "python": "3.12.4",
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.9.0",
+    "statsmodels": "0.14.6",
+    "xgboost": "3.3.0",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "shap": "0.52.0",
+    "matplotlib": "3.11.1",
+    "seaborn": "0.13.2"
+  }
+}

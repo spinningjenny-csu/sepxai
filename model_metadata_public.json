@@ -1,0 +1,51 @@
+{
+  "model_name": "SepXAI",
+  "code_release": "v1.1.0-r2",
+  "model_version": "SepXAI-R2-2026-09-02",
+  "model_artifact_sha256": "9f74ab5e23fe82a02c33af508a09c23365379d7229a49f73ec3f35a58591376e",
+  "random_seed": 42,
+  "selected_algorithm": "CatBoost",
+  "features": [
+    "lactate_min",
+    "sbp_ni_min",
+    "resp_rate_min",
+    "dbp_ni_max",
+    "heart_rate_mean",
+    "spo2_min",
+    "temperature_max"
+  ],
+  "units": {
+    "lactate_min": "mmol/L",
+    "sbp_ni_min": "mmHg",
+    "resp_rate_min": "breaths/min",
+    "dbp_ni_max": "mmHg",
+    "heart_rate_mean": "beats/min",
+    "spo2_min": "%",
+    "temperature_max": "degrees C"
+  },
+  "best_parameters": {
+    "classifier__depth": 6,
+    "classifier__iterations": 150,
+    "classifier__learning_rate": 0.05
+  },
+  "operating_threshold": 0.12454709065853185,
+  "threshold_rationale": "Highest-specificity threshold achieving sensitivity >= 0.80 in the held-out calibration subset",
+  "index_time": "first ICU admission in the first hospitalization",
+  "observation_window": "ICU admission -6 h to ICU admission +24 h",
+  "prediction_time": "end of the 24-h observation window",
+  "external_validation": {
+    "dataset": "MIMIC-III v1.4",
+    "source_doi": "10.1186/s12967-020-02620-5",
+    "source_supplement": "12967_2020_2620_MOESM1_ESM.csv",
+    "source_supplement_sha256": "6e0b4104ec2388fcef25f179c92c449b567a6ef7a11b17276b77e05a0c6f32de",
+    "analytic_file_sha256": "f1a684b761760cf78c100b4d7238acb4be7cbbb15d19134ac36736d9c7cafea4",
+    "reported_analytic_file_sha256": "f1a684b761760cf78c100b4d7238acb4be7cbbb15d19134ac36736d9c7cafea4",
+    "predictor_window": "published first-day ICU summary variables",
+    "landmark_rule": "icu_los >= 1.0 day",
+    "use": "evaluation only"
+  },
+  "outcome": "30-day all-cause mortality from hospital admission",
+  "python_version": "3.12.4",
+  "artifact_publicly_distributed": false,
+  "access_note": "The MIMIC-derived trained model is not distributed through public GitHub. Controlled sharing is subject to PhysioNet requirements."
+}
